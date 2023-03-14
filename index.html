@@ -12,8 +12,6 @@
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous" />
-  <link href="./videos/demo.css"
-        rel="stylesheet" />
 </head>
 <title>3D Motion Magnification: Visualizing Subtle Motions with Time-Varying Neural Fields  
   Supplementary Materia</title>
@@ -50,15 +48,15 @@
             </li> -->
         <li class="nav-item">
           <a class="nav-link"
-              href="#real_results"
+              href="#single_results"
               ,
-              target="_self">Real-world Results</a>
+              target="_self">Monocular Results</a>
         </li>    
         <li class="nav-item">
           <a class="nav-link"
-             href="#synth_results"
+             href="#multi_results"
              ,
-             target="_self">Synthetic Results</a>
+             target="_self">Multi-cam Results</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link"
@@ -103,7 +101,7 @@
        style="text-align: center;">
 
 
-   <h3 id="real_results"
+   <h3 id="single_results"
        style="padding-top: 80px; margin-top: -80px">Results on real-world scenes
    </h3>
 
@@ -123,10 +121,12 @@
    <hr>
    <br>
 
-  <h3 id="synth_results"
+  <h3 id="multi_results"
         style="padding-top: 80px; margin-top: -80px">Results on multi-camera scenes
   </h3>
   <br>
+
+  <h5>Free viewpoint renderng with magnified motions.</h5>
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -152,7 +152,49 @@
   <br>
   <hr>
 
-  Talk about varying alpha.
+  <h5>Using Positional Encoding as Point Embedding Function</h5>
+  <p align="left">
+    "Position Shift" predicts a 3D displacement for the input point before positional encoding.<br>
+    "Encoding Shift" predicts a phase shift within each sine wave for the input point during positional encoding.<br>
+    We perform Linear Eulerian magnification by amplifying the temporal variations of the predicted shifts.<br>
+    "Position Shift" leads to false motions, while "Encoding Shift" reduces such artifacts.
+  <p>
+  <div class="opacity-off">
+    <video width="720"
+            height="414"
+            controls
+            autoplay
+            muted
+            loop>
+      <source src="videos/false_motion.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+  <br>
+  <hr>
+
+  <h5>Using Tri-Plane as Point Embedding Function</h5>
+  <p align="left">
+    "Linear - Tri-Plane" applies linear Eulerian magnification on tri-plane features.<br>
+    "Phase - Tri-Plane" applies phase-based Eulerian magnification on tri-plane features.<br>
+    "Linear - Tri-Plane" leads artifacts like clipped intensities, while "Phase - Tri-Plane" reduces such artifacts.
+  </p>
+  <br>
+  <div class="opacity-off">
+    <video width="720"
+            height="414"
+            controls
+            autoplay
+            muted
+            loop>
+      <source src="videos/clipped.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+  <br>
+  <hr>
+
+  <h5>Varying the magnification factor.</h5>
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -168,41 +210,20 @@
   <hr>
   <br>
 
-  Talk about false motion from purely predicting position shifts.
-  <div class="opacity-off">
-    <video width="720"
-            height="414"
-            controls
-            autoplay
-            muted
-            loop>
-      <source src="videos/false_motion.mp4"
-              type="video/mp4">
-    </video>
-  </div>
-  <br>
-  <hr>
+  <h5>Comparisons to video-based magnification.</h5>
+  <p align="left"> 
+    "Observed" are Blender renderings from scenes with subtle object motions. <br>
+    "Ground Truth" are Blender renderings where the true object motions are artificially amplified. <br>
+    "Linear - Video" and "Phase - Video" are obtained by
+     deploying 2D magnification methods on the non-magnified RGB videos rendered by NeRF. <br>
+    <br>
 
-  Talk about clipped intensity from linear magnification on tri-plane.
-  <div class="opacity-off">
-    <video width="720"
-            height="414"
-            controls
-            autoplay
-            muted
-            loop>
-      <source src="videos/clipped.mp4"
-              type="video/mp4">
-    </video>
-  </div>
+    In general, 3D methods that perform magnification in the embedding space produce fewer artifacts compared to 2D methods.<br>
+    2D methods requires rendering at a fixed viewpoint and, for every new rendering, re-running video magnification on the fly.<br>
+    In contrast, magnification on tri-planes is performed just once, and the motion-magnified tri-planes can then be used to render at new viewpoints.
+  </p>
   <br>
-  <hr>
-
-  <h5>Comparison of different approaches to magnification</h5>
-  <br>
-  <hr>
-
-  Chair
+  "Chair"
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -215,7 +236,7 @@
     </video>
   </div>
   <br>
-  Drums
+  "Drums"
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -228,7 +249,7 @@
     </video>
   </div>
   <br>
-  Ficus
+  "Ficus"
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -241,7 +262,7 @@
     </video>
   </div>
   <br>
-  Hotdog
+  "Hotdog"
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -254,7 +275,7 @@
     </video>
   </div>
   <br>
-  Lego
+  "Lego"
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -267,7 +288,7 @@
     </video>
   </div>
   <br>
-  Materials
+  "Materials"
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -280,7 +301,7 @@
     </video>
   </div>
   <br>
-  Mic
+  "Mic"
   <div class="opacity-off">
     <video width="720"
             height="414"
@@ -293,7 +314,7 @@
     </video>
   </div>
   <br>
-  Ship
+  "Ship"
   <div class="opacity-off">
     <video width="720"
             height="414"
