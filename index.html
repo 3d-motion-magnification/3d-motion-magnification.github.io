@@ -64,18 +64,6 @@
       <h2 class="title is-8"><u>Results on single-camera scenes</u></h2>
 
       <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-balance">
-          <video poster="" id="balance" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/balance.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-hand">
-          <video poster="" id="hand" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/hand.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
         <div class="item item-handstand">
           <video poster="" id="handstand" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/handstand.mp4"
@@ -88,20 +76,50 @@
                     type="video/mp4">
           </video>
         </div>
+        <div class="item item-balance">
+          <video poster="" id="balance" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/balance.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-hand">
+          <video poster="" id="hand" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/hand.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
         <div class="item item-breathe">
           <video poster="" id="breathe" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/breathe.mp4"
                     type="video/mp4">
           </video>
         </div>
+        <div class="item item-manny">
+          <video poster="" id="manny" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/manny.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fork">
+          <video poster="" id="fork" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fork.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
       </div>
+      <p>
+        We demonstrate successful 3D motion magnification on various real-world scenes with different subtle motions,
+         scene compositions, and handheld video captures in the wild.
+      </p>
+
     </div>
   </div>
 
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-4"><b>Stablization ability</b></h2>
+      <h2 class="title is-4"><b>Stablization from handheld captures</b></h2>
     </div>
+    <br>
     <div class="container is-max-desktop">
       <div class="content" align="center">
         <video autoplay muted loop playsinline controls width="80%">
@@ -109,7 +127,8 @@
               type="video/mp4">
         </video>
         <p>
-          caption
+          Prior 2D method (phase-based Eulerian) fails on a handheld-captured video with camera shake as it assumes stablized or tripod capture.
+          Our method benefits from having a 3D representation and successfully separates camear motion from scene motion.
         </p>
       </div>
     </div>
@@ -117,8 +136,9 @@
 
   <div class="hero-body">
     <div class="container">
-        <h2 class="title is-4"><b>Remapping to tracked handheld poses</b></h2>
+        <h2 class="title is-4"><b>Remapping to handheld poses</b></h2>
     </div>
+    <br>
     <div class="container is-max-desktop">
       <div class="content" align="center">
         <video autoplay muted loop playsinline controls width="80%">
@@ -126,9 +146,47 @@
               type="video/mp4">
         </video>
         <p>
-          caption
+          We provide motion-magnified rendering at <b><i>Tracked Poses</i></b>, which are estimated from the shaky handheld capture, 
+          and <b><i>Fixed Pose</i></b>, which is a static viewpoint.
         </p>
-  
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4"><b>Frequency selection</b></h2>
+    </div>
+    <br>
+    <div class="container is-max-desktop">
+      <div class="content" align="center">
+        <video autoplay muted loop playsinline controls width="80%">
+          <source src="./static/videos/fork2.mp4"
+              type="video/mp4">
+        </video>
+        <p>
+          We capture two tuning forks with different vibration frequnecies (Left: 64 Hz, Right: 128 Hz). <br>
+          By temporally filtering the point embeddings, we can selectively amplify different frequencies.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4"><b>Mannequin challenge in the wild</b></h2>
+    </div>
+    <br>
+    <div class="container is-max-desktop">
+      <div class="content" align="center">
+        <video autoplay muted loop playsinline controls width="80%">
+          <source src="./static/videos/manny.mp4"
+              type="video/mp4">
+        </video>
+        <p>
+          Using this blurry, handheld capture accessed from the internet,
+           we deploy our method and <br> amplify interesting motions as the human attempts the Mannequin Challenge.
+        </p>
       </div>
     </div>
   </div>
@@ -141,17 +199,19 @@
     <div class="container">
       <h2 class="title is-8"><u>Results on multi-camera scenes</u></h2>
     </div>
+    <br>
     <div class="container is-max-desktop">
       <div class="content" align="center">
         <video autoplay muted loop playsinline controls width="80%">
-          <source src="./static/videos/gallery1.mp4"
-              type="video/mp4">
-        </video>
-        <video autoplay muted loop playsinline controls width="80%">
-          <source src="./static/videos/gallery2.mp4"
+          <source src="./static/videos/gallery.mp4"
               type="video/mp4">
         </video>
       </div>
+      <p>
+        We also deploy our method on multi-camera captures, including 8 synthetic scenes generated with Blender,
+         and 2 real-world scenes focused on human captures. 
+         We perform more analysis using the Blender scenes where ground truth can be generated.
+      </p>  
     </div>
   </div>
 </section>
@@ -228,12 +288,14 @@
             <source src="./static/videos/varyalpha.mp4"
                 type="video/mp4">
           </video>
-          <p>
+          <p align="center">
+            We visualize the impact of varying the magnification factor.
           </p>
-          <br>
+        <br>
         </div>
       </div>
-    </div>
+  
+      </div>
   </div>
   <br>
 
@@ -243,7 +305,7 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-4">Comparisons to video-based magnificatios.</h2>
+      <h2 class="title is-4">Comparisons to video-based magnificatios</h2>
 
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-chair">
@@ -295,6 +357,14 @@
           </video>
         </div>
       </div>
+      <p align="left">
+        <b><i>Observed</i></b> are Blender renderings from scenes with subtle object motions. 
+        <b><i>Ground Truth</i></b>  are Blender renderings where the true object motions are artificially amplified. <br>
+        <b><i>Linear - Video</i></b>  and <b><i>Phase - Video</i></b>  are obtained by deploying 2D magnification methods on the non-magnified RGB videos rendered by NeRF. 
+        In general, 3D methods that perform magnification in the embedding space produce fewer artifacts compared to 2D methods.
+        Furthermore, 2D methods requires rendering at a fixed viewpoint and, for every new rendering, re-running video magnification on the fly.
+        In contrast, magnification on tri-planes is performed just once, and the motion-magnified tri-planes can then be used to render at new viewpoints.
+     </p>
     </div>
     <br>
   </div>
