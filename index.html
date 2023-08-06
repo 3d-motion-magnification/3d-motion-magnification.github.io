@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>3D Motion Magnification: Visualizing Subtle Motions with Time-Varying Neural Fields</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="icon" href="./static/favicon.svg" />
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">&#128270;
+              <small>
+                3D Motion Magnification<span style="font-weight:normal">:
+                  <br>Visualizing Subtle Motions with Time-Varying Neural Fields</span></h1>
+              </small>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://brandonyfeng.github.io/">Brandon Y. Feng</a><sup>*1</sup></span>  &nbsp
+              <span class="author-block">
+                <a href="https://hadizayer.github.io/">Hadi AlZayer</a><sup>*1</sup></span>  &nbsp
+              <span class="author-block">
+                <a href="http://people.csail.mit.edu/mrub/">Michael Rubinstein</a><sup>2</sup>  &nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://billf.mit.edu/">William T. Freeman</a><sup>2,3</sup>  &nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Maryland</span> &nbsp
+              <span class="author-block"><sup>2</sup>Google Research</span> &nbsp
+              <span class="author-block"><sup>3</sup>Massachusetts Institute of Technology</span> <br>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <small>
+                  International Conference on Computer Vision (ICCV) 2023
+                </small>
+              </span> 
+            </div>
+            <br>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="."
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="."
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                    </a>
+                </span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel_v2" class="results-carousel">
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="80%">
+              <source src="./static/videos/jacksonwang.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="80%">
+              <source src="./static/videos/ronaldo.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="80%">
+              <source src="./static/videos/baby.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="80%">
+              <source src="./static/videos/beyonce.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <p align="center">
+          We deploy our method on in-the-wild videos containing subtle motion, ranging from a sleeping baby breathing to
+          celebrities attempting the Mannequin Challenge.
+        </p>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="container">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Video motion magnification helps us visualize subtle, imperceptible motion.
+              Prior methods, however, are only applicable to 2D videos.
+              We present 3D motion magnification techniques that allow us to magnify subtle motions in dynamic scenes
+              while supporting rendering from novel views.
+              Our core idea is to represent the dynamic scene with time-varying radiance fields and leverage the
+              Eulerian
+              principle for motion magnification to analyze and amplify the embedding features from a fixed point over
+              time.
+              We study and validate the capability of 3D motion magnification for both implicit and explicit/hybrid NeRF
+              models.
+              We evaluate the effectiveness of our approaches on both synthetic and real-world dynamic scenes under
+              various capture setups.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="container">
+          <h2 class="title is-3">Approach</h2>
+          <img src="./static/images/Overview.png" alt="overview" width="100%">
+          <div class="content has-text-justified">
+            <p>
+              <b>a. </b>
+              We adopt the tri-plane representation to associate each 3D point to its feature vector, which is
+              fed to an MLP network to produce its color and opacity used for volume rendering.
+              <b>b. </b>
+              To represent the dynamic scene, we learn one feature tri-plane for each observed timestep.
+              All timesteps share the same MLP which decodes the color and opacity, so features on the tri-plane are
+              solely responsible for producing the subtle temporal variations.
+              We first learn a tri-plane for a single timestep as the initialization, and then finetune the features for
+              each remaining timestep.
+              After learning the feature tri-planes, we can split them into three feature videos.
+              These feature videos are separately processed by using phase-based video motion magnification, resulting
+              in three motion-magnified feature videos.
+              <b>c. </b>
+              We recompose those three motion-magnified feature videos into a single motion-magnified tri-plane, which
+              can be used for volume rendering without further modifications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Single-camera results</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-handstand">
+            <video poster="" id="handstand" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/handstand.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-newfork">
+            <video poster="" id="newfork" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/fork_3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-aircon">
+            <video poster="" id="aircon" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/ac.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-breathe">
+            <video poster="" id="breathe" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/breathing.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-bottle">
+            <video poster="" id="bottle" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/bottle.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-stand">
+            <video poster="" id="stand" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/standing.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-fork1">
+            <video poster="" id="fork1" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/fork_1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-fork2">
+            <video poster="" id="fork2" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/fork_2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <p>
+          We demonstrate successful 3D motion magnification on various real-world scenes with different subtle motions,
+          scene compositions, and handheld video captures in the wild.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Multi-camera results</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_h1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_h2.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_ship.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_drums.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_lego.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_ficus.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_hotdog.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_chair.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_materials.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/p_mic.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            We deploy our method on multi-camera captures, including 8 synthetic scenes generated with Blender,
+            and 2 real-world multi-camera scenes focused on human subjects.
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered"><b>Stablization from handheld captures</b></h2>
+    </div>
+    <br>
+    <div class="container is-max-desktop">
+      <div class="content" align="center">
+        <video autoplay muted loop playsinline controls width="80%">
+          <source src="./static/videos/2DCompare.mp4" type="video/mp4">
+        </video>
+        <div class="content has-text-centered">
+          <p>
+            Prior 2D method (phase-based Eulerian) fails on a handheld-captured video with camera shake as it assumes
+            stablized capture.
+            Our method benefits from having a 3D representation and separates camear motion from scene motion.
+          </p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <h2 class="title is-3 has-text-centered"><b>Rendering from different poses</b></h2>
+    </div>
+    <br>
+    <div class="container is-max-desktop">
+      <div class="content" align="center">
+        <video autoplay muted loop playsinline controls width="80%">
+          <source src="./static/videos/TrackedPose.mp4" type="video/mp4">
+        </video>
+        <div class="content has-text-centered">
+          <p>
+            We provide motion-magnified rendering at <b>Tracked Poses</b>, which are estimated from the <br>shaky
+            handheld capture, and <b>Fixed Pose</b>, which is a static viewpoint.
+          </p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <h2 class="title is-3 has-text-centered"><b>Frequency selection</b></h2>
+    </div>
+    <br>
+    <div class="container is-max-desktop">
+      <div class="content" align="center">
+        <video autoplay muted loop playsinline controls width="80%">
+          <source src="./static/videos/freq.mp4" type="video/mp4">
+        </video>
+        <p>
+          We capture two tuning forks with different vibration frequnecies (Left: 64 Hz, Right: 128 Hz). <br>
+          By temporally filtering the point embeddings, we can selectively amplify different frequencies.
+        </p>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <h2 class="title is-3 has-text-centered"><b>Varying the magnification factor</b></h2>
+    </div>
+    <br>
+    <div class="container is-max-desktop">
+      <div class="content" align="center">
+        <video autoplay muted loop playsinline controls width="80%">
+          <source src="./static/videos/varyalpha.mp4" type="video/mp4">
+        </video>
+        <p>
+          We visualize the impact of varying the magnification factor.
+        </p>
+      </div>
+    </div>
+  </div>
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Comparisons of different magnification strategies</h2>
+      </div>
+    </div>
+    <div class="hero-body">
+      <div class="container">
+        <h4 class="is-size-5" align="center"><b>Using Positional Encoding as Point Embedding Function</b></h4>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified" align="center">
+            <div class="video_sm">
+              <video id="teaser" autoplay muted loop playsinline controls width="70%">
+                <source src="./static/videos/false_motion.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p>
+              <b>Position Shift</b> predicts a 3D displacement for the input point before positional encoding, while
+              <b>Encoding Shift</b> predicts a phase shift within each sine wave for the input point during positional
+              encoding.
+              We perform Linear Eulerian magnification by amplifying the temporal variations of the predicted shifts.
+              <b>Position Shift</b> leads to false motions, while <b>Encoding Shift</b> reduces such artifacts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="hero-body">
+      <div class="container">
+        <h4 class="is-size-5" align="center"><b>Using Tri-Plane as Point Embedding Function</b></h>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified" align="center">
+            <div class="video_sm">
+              <video id="teaser" autoplay muted loop playsinline controls width="70%">
+                <source src="./static/videos/clipped.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p>
+              <b>Linear - Tri-Plane</b> applies linear Eulerian magnification on tri-plane features.<br>
+              <b>Phase - Tri-Plane</b> applies phase-based Eulerian magnification on tri-plane features.<br>
+              <b>Linear - Tri-Plane</b> causes clipped intensities, while <b>Phase - Tri-Plane</b> reduces such
+              artifacts.
+            </p>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Comparisons to video-based magnifications</h2>
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-chair">
+            <video poster="" id="hand" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/chair.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-drums">
+            <video poster="" id="train" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/drums.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-ficus">
+            <video poster="" id="horsejump-low" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/ficus.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-hotdog">
+            <video poster="" id="kite-walk" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/hotdog.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-lego">
+            <video poster="" id="kite-walk" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/lego.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-materials">
+            <video poster="" id="kite-walk" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/materials.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-mic">
+            <video poster="" id="kite-walk" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/mic.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-ship">
+            <video poster="" id="kite-walk" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/ship.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="content has-text-justified" align="center">
+          <p align="left">
+            <b>Observed</b> are Blender renderings from scenes with subtle object motions.
+            <b>Ground Truth</b> are Blender renderings where the true object motions are artificially amplified. <br>
+            <b>Linear - Video</b> and <b>Phase - Video</b> are obtained by deploying 2D magnification methods on the
+            non-magnified RGB videos rendered by NeRF.
+            In general, 3D methods that perform magnification in the embedding space produce fewer artifacts compared to
+            2D methods.
+            Furthermore, 2D methods requires rendering at a fixed viewpoint and, for every new rendering, re-running
+            video magnification on the fly.
+            In contrast, magnification on tri-planes is performed just once, and the motion-magnified tri-planes can
+            then be used to render at new viewpoints.
+          </p>
+        </div>
+      </div>
+      <br>
+    </div>
+  </section>
+
+
+
+  <footer class="footer">
+    <div align="center" class="container">
+      <div class="columns is-centered">
+        <div class="content">
+          Template from <a href="https://nerfies.github.io/">Nerfies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
